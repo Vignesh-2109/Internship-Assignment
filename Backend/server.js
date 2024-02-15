@@ -16,62 +16,6 @@ app.use(cors());
 // Define Device schema
 
 
-// Routes
-
-// Get all devices
-app.get('/devices', async (req, res) => {
-    try {
-        const devices = await Device.find();
-        res.json(devices);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-// Create a new device
-app.post('/devices', async (req, res) => {
-    const device = new Device({
-        device_id: req.body.device_id,
-        alloted_to_user: req.body.alloted_to_user,
-        state: req.body.state
-    });
-    try {
-        const newDevice = await device.save();
-        res.status(201).json(newDevice);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
-
-// Assign a device to a user
-app.put('/devices/:id/assign', async (req, res) => {
-    try {
-        const device = await Device.findById(req.params.id);
-        if (device == null) {
-            return res.status(404).json({ message: 'Device not found' });
-        }
-        device.alloted_to_user = req.body.alloted_to_user;
-        const updatedDevice = await device.save();
-        res.json(updatedDevice);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
-
-// Update device state
-app.put('/devices/:id/state', async (req, res) => {
-    try {
-        const device = await Device.findById(req.params.id);
-        if (device == null) {
-            return res.status(404).json({ message: 'Device not found' });
-        }
-        device.state = req.body.state;
-        const updatedDevice = await device.save();
-        res.json(updatedDevice);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
 
 app.use((err, req, res, next) => {
   if (err.message === 'access denied') {
@@ -79,6 +23,7 @@ app.use((err, req, res, next) => {
     res.json({ error: err.message });
   }
 });
+
 app.use('/',routes);
 const port = 8000;
 app.listen(port,()=>{

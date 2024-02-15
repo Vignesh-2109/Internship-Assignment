@@ -3,6 +3,10 @@ const bcrypt = require("bcryptjs");
 
 const user = new mongoose.Schema(
   {
+    user_id: { 
+      type: String, 
+      required: true 
+    },
     name: {
       type: String,
       required: true,
@@ -16,20 +20,12 @@ const user = new mongoose.Schema(
       type: String,
       required: true,
     },
-    publicKey: {
-      type: String,
-      
-    },
-    hasPrivateKey: {
-      type: Boolean,
-      default: false,
-    },
-   
+
+    devices: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Device' }],
+    rooms: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Room' }]
 
   },
-  {
-    timestamps: true,
-  }
+
 );
 
 user.pre("save", async function (next) {
@@ -48,6 +44,6 @@ user.methods.matchPassword = async function (enterPassword) {
   return await bcrypt.compare(enterPassword, this.password);
 };
 
-const userSchema = mongoose.model("User", user);
+const User  = mongoose.model("User", user);
 
-module.exports = userSchema;
+module.exports = User ;

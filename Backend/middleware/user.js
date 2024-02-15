@@ -1,5 +1,5 @@
-const PasswordResetToken = require('../Model/passwordResetToken.js')
-const User = require('../Model/user.js')
+const PasswordResetToken = require('../utils/passwordresettoken')
+const User = require('../Model/UserModel')
 const {isValidObjectId} = require('mongoose');
 const bcrypt = require('bcryptjs');
 module.exports.verifyToken =async (req, res, next)=>{

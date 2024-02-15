@@ -3,9 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 const user_routes = require('./user_routes');
-const device_routes = require('./devices_routes');
+const admin_routes = require('./Admin_routes');
 router.use('/api/user',user_routes);
-router.use('/api/device', device_routes);
+router.use('/api/admin', admin_routes);
 router.get('/api', function(req, res){
   res.send('Hello World');
 })
