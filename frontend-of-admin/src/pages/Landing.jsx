@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+
 const Landing = () => {
   return (
     <div>
@@ -9,11 +9,14 @@ const Landing = () => {
             <p>You can manage your devices here.</p>
             <section>
                 <h2>Manage Devices</h2>
-                <p>Click the button below to manage your devices.</p>
-                <Link to="/devices">
-                    <button>Manage Devices</button>
-                </Link>
+          
             </section>
+            <h2>Admin Panel</h2>
+            <section>
+              <h3>Task 1: Admin can create new IoT devices</h3>
+              <p>Description of Task 1...</p>
+              {/* <Link to="/create-device"><button>Create Device</button></Link> */}
+          </section>
         </div>
 
     </div>

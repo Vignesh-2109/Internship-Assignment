@@ -2,20 +2,20 @@ import logo from './logo.svg';
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
 import Landing from './pages/Landing';
-import Device from './pages/Device';
 
+import CreateDevice from './pages/CreateDevice';
+import AssignDevice from './pages/AssignDevice';
+import DesDevice from './pages/DesDevice';
+import RegisterCustomer from './pages/RegisterCustomer';
 function App() {
   return (
     <div className="App">
-      <Routes>
-        {/* <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<SignUp />} />
-        {isUserSignedIn && <Route path='/account' element={<Account />} />}
-        {isUserSignedIn && <Route path='/Lobby' element={<Lobby  />} />}
-        {isUserSignedIn &&  <Route path="/room/:roomId" element={<Room />} />} */}
-       <Route path='/' element={<Landing/>} />
-       <Route path='/devices' element={<Device/>}/>
+      <Routes>     
+        <Route path='/' element={<Landing/>} />
+        <Route path='create-device' element={ <CreateDevice/>}/>
+        <Route path='assign-device' element={<AssignDevice/>}/>
+        <Route path='device-description' element={<DesDevice/>}/>
+        <Route path='regidter-customer' element={<RegisterCustomer/>} />
       </Routes>
     </div>
   );
